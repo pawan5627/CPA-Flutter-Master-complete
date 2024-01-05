@@ -7,6 +7,7 @@ import 'package:cpa/UI/screens/homescreen/widgets/side_navbar/recomendation.dart
 import 'package:cpa/export.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:video_player/video_player.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 import '../searchscreen.dart';
 import 'CPA.dart';
@@ -23,19 +24,27 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  late YoutubePlayerController _youtubeController;
+  // late YoutubePlayerController _youtubeController;
+    late VideoPlayerController _videoController;
 
   @override
   void initState() {
     super.initState();
-    String videoId = YoutubePlayer.convertUrlToId(widget.liveNewsUrl) ?? "";
-    _youtubeController = YoutubePlayerController(
-      initialVideoId: videoId,
-      flags: YoutubePlayerFlags(
-        autoPlay: true,
-        mute: false,
-      ),
-    );
+    // String videoId = YoutubePlayer.convertUrlToId(widget.liveNewsUrl) ?? "";
+    // _youtubeController = YoutubePlayerController(
+    //   initialVideoId: videoId,
+    //   flags: YoutubePlayerFlags(
+    //     autoPlay: true,
+    //     mute: false,
+    //   ),
+    // );
+
+    _videoController = VideoPlayerController.networkUrl( 
+      Uri.parse(widget.liveNewsUrl)
+    )..initialize().then((_) {
+        // Ensure the first frame is shown after the video is initialized
+        setState(() {});
+      });
   }
 
   @override
@@ -52,26 +61,27 @@ class _HomeScreenState extends State<HomeScreen> {
 
   // Function to mute the video
   void muteVideo() {
-    _youtubeController.mute();
+    _videoController.setVolume(0);
   }
 
   // Function to unmute the video
   void unmuteVideo() {
-    _youtubeController.unMute();
+    _videoController.setVolume(100);
   }
 
   @override
   deactivate() {
     print("deactivate called");
-    _youtubeController.dispose();
+    _videoController.dispose();
     super.deactivate();
   }
 
   @override
   void dispose() {
     print("Dispose called");
-    _youtubeController.dispose();
+    _videoController.dispose();
     super.dispose();
+    
   }
 
   @override
@@ -82,6 +92,7 @@ class _HomeScreenState extends State<HomeScreen> {
           leading: IconButton(
             color: CPAColorTheme().primaryblue,
             onPressed: () {
+              dispose();
               Navigator.push(
                 context,
                 MaterialPageRoute(
@@ -108,7 +119,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 color: CPAColorTheme().primaryblue,
                 iconSize: 40,
                 onPressed: () {
-                  Navigator.push(
+                  dispose();
+              Navigator.push(
                     context,
                     MaterialPageRoute(
                       builder: (context) => const SearchScreen(),
@@ -127,9 +139,15 @@ class _HomeScreenState extends State<HomeScreen> {
                 width: 433,
                 height: 359,
                 color: CPAColorTheme().primaryblue,
-                child: YoutubePlayer(
-                  controller: _youtubeController,
-                  showVideoProgressIndicator: true,
+                child: FutureBuilder(
+                  future: _videoController.initialize(),
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.done) {
+                      return VideoPlayer(_videoController);
+                    } else {
+                      return CircularProgressIndicator();
+                    }
+                  },
                 ),
               ),
               Padding(
@@ -150,7 +168,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         color: CPAColorTheme().primarygolden,
                         child: ElevatedButton(
                           onPressed: () {
-                            Navigator.push(
+                            dispose();
+              Navigator.push(
                               context,
                               MaterialPageRoute(
                                 builder: (context) => NewsPage(),
@@ -195,7 +214,8 @@ class _HomeScreenState extends State<HomeScreen> {
                               elevation: 0,
                             ),
                             onPressed: () {
-                              Navigator.push(
+                              dispose();
+              Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) => const ProductsHome(),
@@ -235,7 +255,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                 elevation: 0,
                               ),
                               onPressed: () {
-                                Navigator.push(
+                                dispose();
+              Navigator.push(
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) => const WebsiteHome(),
@@ -280,7 +301,8 @@ class _HomeScreenState extends State<HomeScreen> {
                               elevation: 0,
                             ),
                             onPressed: () {
-                              Navigator.push(
+                              dispose();
+              Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) => const TrainingHome(),
@@ -317,7 +339,8 @@ class _HomeScreenState extends State<HomeScreen> {
                               elevation: 0,
                             ),
                             onPressed: () {
-                              Navigator.push(
+                              dispose();
+              Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) => Recomendation(
@@ -356,7 +379,8 @@ class _HomeScreenState extends State<HomeScreen> {
                               elevation: 0,
                             ),
                             onPressed: () {
-                              Navigator.push(
+                              dispose();
+              Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) => WaterResource(
@@ -448,7 +472,8 @@ class _HomeScreenState extends State<HomeScreen> {
                             elevation: 0,
                           ),
                           onPressed: () {
-                            Navigator.push(
+                            dispose();
+              Navigator.push(
                               context,
                               MaterialPageRoute(
                                 builder: (context) =>

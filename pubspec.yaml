@@ -45,6 +45,7 @@ dependencies:
   pay: ^1.1.2
   uuid: ^4.2.1
   material:
+  video_player: 
   # For Firebase
   firebase_core:
   firebase_auth:
