@@ -152,7 +152,9 @@ class AnalysisScreen1 extends StatelessWidget {
                         if (_nameController.text.isEmpty ||
                             _addressController.text.isEmpty ||
                             (cpaLong?.isEmpty ?? true) ||
+                            // ignore: unnecessary_null_comparison
                             (noOfAdults == null || noOfAdults == 0) ||
+                            // ignore: unnecessary_null_comparison
                             (noOfChildren == null || noOfChildren == 0) ||
                             (foodAllergies?.isEmpty ?? true)) {
                           // Show an alert if any of the required fields is empty

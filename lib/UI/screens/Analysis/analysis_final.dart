@@ -105,7 +105,7 @@ class AnalysisFinalScreen extends StatelessWidget {
                               child: Text(
                                 'Create Account',
                                 style: TextStyle(
-                                  fontFamily: "Times New Roman",
+                                  fontFamily: " Articulat CF",
                                   fontSize: 16, // Set the button text size
                                   color:
                                       Colors.white, // Set the button text color

@@ -107,9 +107,20 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
-    - family: Times New Roman
+    - family: Articulat CF
       fonts:
-        - asset: assets/fonts/Times Regular.ttf
-   
+        - asset: assets/fonts/ArticulatCF-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/ArticulatCF-Heavy.ttf
+          weight: 800
+        - asset: assets/fonts/ArticulatCF-Light.ttf
+          weight: 300
+        - asset: assets/fonts/ArticulatCF-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/ArticulatCF-Normal.ttf
+          weight: 400
+        - asset: assets/fonts/ArticulatCF-Thin.ttf
+          weight: 100
+
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

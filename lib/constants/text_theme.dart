@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 class CPATextTheme {
   CPATextTheme({
-    this.fontFamily = "Times New Roman",
+    this.fontFamily = "Articulat CF",
   }) : _baseTextStyle = TextStyle(
             fontFamily: fontFamily,
             fontWeight: FontWeights.regular,

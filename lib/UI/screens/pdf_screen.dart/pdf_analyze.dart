@@ -10,7 +10,7 @@ class PdfAnalyzeApi {
     final pdf = pw.Document();
 
     // Load your TTF or OTF font file
-    final ttfFont = await rootBundle.load('assets/fonts/Times Regular.ttf');
+    final ttfFont = await rootBundle.load('assets/fonts/ArticulatCF-Normal.ttf');
     final font = pw.Font.ttf(ttfFont);
 
     pdf.addPage(pw.Page(
