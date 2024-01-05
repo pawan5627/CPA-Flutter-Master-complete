@@ -1,0 +1,18 @@
+openapi: 3.0.0
+info:
+  title: Node js API
+  version: 1.0.0
+paths:
+  /api/auth:
+    post:
+      summary: Returns a greeting message
+      responses:
+        '200':
+          description: A greeting message
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string

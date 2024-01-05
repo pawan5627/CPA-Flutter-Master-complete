@@ -1,0 +1,38 @@
+class CPAAssets {
+  CPAAssets._();
+  static String CpaLogo = 'assets/images/cpalogo.png';
+  static String GoogleLogo = 'assets/images/google.png';
+  static String FacebookLogo = 'assets/images/fblogo.png';
+  static String AppleLogo = 'assets/images/applelogo.jpg';
+  static String LatestNews = 'assets/images/latestnews.png';
+  static String Products = 'assets/images/products.png';
+  static String Websites = 'assets/images/websites.png';
+  static String Training = 'assets/images/training.png';
+  static String Services = 'assets/images/services.png';
+  static String CpApplication = 'assets/images/cpaapplication.png';
+  static String Bartering = 'assets/images/products/bartering.png';
+  static String communication = 'assets/images/products/communication.png';
+  static String emergency = 'assets/images/products/emergency.png';
+  static String food = 'assets/images/products/food.png';
+  static String nonlethal = 'assets/images/products/nonlethal.png';
+  static String power = 'assets/images/products/power.png';
+  static String shelters = 'assets/images/products/shelters.png';
+  static String travel = 'assets/images/products/travel.png';
+  static String water = 'assets/images/products/water.png';
+  static String Website = 'assets/images/websites/websites.png';
+  static String Disaster = 'assets/images/websites/disaster.png';
+  static String Gardening = 'assets/images/websites/gardening.png';
+  static String Non_Lethal = 'assets/images/websites/nonlethal.png';
+  static String Off_Grid = 'assets/images/websites/offgrid.png';
+  static String Offline = 'assets/images/websites/offline.png';
+  static String Blogs = 'assets/images/training/blogs.png';
+  static String Books = 'assets/images/training/books.png';
+  static String Courses = 'assets/images/training/courses.png';
+  static String Podcast = 'assets/images/training/training.png';
+  static String ProfileSetup = 'assets/images/user.png';
+  static String ProfileSetupAdd = 'assets/images/add.png';
+  static String EditProfile = 'assets/images/profile.png';
+  static String ReferFriend = 'assets/images/referfriend.png';
+  static String Language = 'assets/images/language.png';
+  static String Lock = 'assets/images/lock.png';
+}
