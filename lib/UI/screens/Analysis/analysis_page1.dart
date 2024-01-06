@@ -2,216 +2,224 @@ import 'package:cpa/UI/screens/Analysis/widgets/drop_down_widget.dart';
 import 'package:cpa/data/dummy.dart';
 import 'package:cpa/export.dart';
 
-class AnalysisScreen1 extends StatelessWidget {
+class AnalysisScreen1 extends StatefulWidget {
   final String? uid;
 
-  const AnalysisScreen1({super.key, this.uid});
+  const AnalysisScreen1({Key? key, this.uid}) : super(key: key);
 
+  @override
+  _AnalysisScreen1State createState() => _AnalysisScreen1State();
+}
+
+class _AnalysisScreen1State extends State<AnalysisScreen1> {
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _addressController = TextEditingController();
+  String _foodAllergiesController = 'No';
+
+  double noOfAdults = 0;
+  double noOfChildren = 0;
   @override
   Widget build(BuildContext context) {
     final TextEditingController _nameController = TextEditingController();
     final TextEditingController _addressController = TextEditingController();
-    // final TextEditingController _foodAllergiesController =
-    //     TextEditingController();
     String _foodAllergiesController = 'No';
 
     return Scaffold(
       body: SingleChildScrollView(
         child: SafeArea(
-            child: Padding(
-          padding: const EdgeInsets.all(20),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              Align(
-                alignment: Alignment.center,
-                child: Image.asset(
-                  CPAAssets.CpaLogo,
-                  width: 90, // Set the desired width
-                  height: 70, // Set the desired height
+          child: Padding(
+            padding: const EdgeInsets.all(20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Align(
+                  alignment: Alignment.center,
+                  child: Image.asset(
+                    CPAAssets.CpaLogo,
+                    width: 90,
+                    height: 70,
+                  ),
                 ),
-              ),
-
-              Align(
-                alignment: Alignment.topLeft,
-                child: Text(
-                  "Let's Start...",
-                  style: CPATextTheme().heading4,
-                ),
-              ),
-              SizedBoxes.verticalTiny,
-              Align(
-                alignment: Alignment.topLeft,
-                child: ProgressBar(
-                  value: 0.2,
-                  backgroundColor: CPAColorTheme().white,
-                  fillColor: CPAColorTheme().primaryblue,
-                ),
-              ),
-              SizedBoxes.verticalMedium,
-              Align(
-                alignment: Alignment.topLeft,
-                child: Text(
-                  'Basic Info',
-                  style: CPATextTheme().body,
-                ),
-              ),
-              SizedBoxes.verticalLarge,
-              CustomTextField(
-                controller: _nameController,
-                hintText: 'Full Name',
-                hintStyle: CPATextTheme()
-                    .subtext
-                    .copyWith(color: CPAColorTheme().neutral400),
-              ),
-              SizedBoxes.verticalLarge,
-              CustomTextField(
-                controller: _addressController,
-                hintText: 'Full Address',
-                hintStyle: CPATextTheme()
-                    .subtext
-                    .copyWith(color: CPAColorTheme().neutral400),
-              ),
-              SizedBoxes.verticalLarge,
-              Text(
-                  'How long do you want your Comprehensive Preparedness Analysis (CPA) to cover?',
-                  style: TextStyle(fontFamily: CPATextTheme().body.fontFamily)),
-              SizedBoxes.verticalLarge,
-              const DaysTag(),
-              SizedBoxes.verticalLarge,
-              Row(
-                children: [
-                  Text('How many Adults (1-8)',
-                      style: TextStyle(
-                          fontFamily: CPATextTheme().body.fontFamily)),
-                  Text('(Over the age of 12)',
-                      style: TextStyle(
-                          fontFamily: CPATextTheme().body.fontFamily,
-                          color: Colors.grey))
-                ],
-              ),
-              SizedBoxes.verticalLarge,
-              const AdultsTag(),
-              SizedBoxes.verticalLarge,
-              Row(
-                children: [
-                  Text('How many children ',
-                      style: TextStyle(
-                          fontFamily: CPATextTheme().body.fontFamily)),
-                  Text('(12 years of age or younger)',
-                      style: TextStyle(
-                          fontFamily: CPATextTheme().body.fontFamily,
-                          color: Colors.grey)),
-                ],
-              ),
-              SizedBoxes.verticalTiny,
-
-              SizedBoxes.verticalLarge,
-              const ChildrenTag(),
-              SizedBoxes.verticalLarge,
-              Align(
+                Align(
                   alignment: Alignment.topLeft,
-                  child: Text('Are there any food allergies? ',
+                  child: Text(
+                    "Let's Start...",
+                    style: CPATextTheme().heading4,
+                  ),
+                ),
+                SizedBoxes.verticalTiny,
+                Align(
+                  alignment: Alignment.topLeft,
+                  child: ProgressBar(
+                    value: 0.2,
+                    backgroundColor: CPAColorTheme().white,
+                    fillColor: CPAColorTheme().primaryblue,
+                  ),
+                ),
+                SizedBoxes.verticalMedium,
+                Align(
+                  alignment: Alignment.topLeft,
+                  child: Text(
+                    'Basic Info',
+                    style: CPATextTheme().body,
+                  ),
+                ),
+                SizedBoxes.verticalLarge,
+                CustomTextField(
+                  controller: _nameController,
+                  hintText: 'Full Name',
+                  hintStyle: CPATextTheme()
+                      .subtext
+                      .copyWith(color: CPAColorTheme().neutral400),
+                ),
+                SizedBoxes.verticalLarge,
+                CustomTextField(
+                  controller: _addressController,
+                  hintText: 'Full Address',
+                  hintStyle: CPATextTheme()
+                      .subtext
+                      .copyWith(color: CPAColorTheme().neutral400),
+                ),
+                SizedBoxes.verticalLarge,
+                Text(
+                  'How long do you want your Comprehensive Preparedness Analysis (CPA) to cover?',
+                  style: TextStyle(fontFamily: CPATextTheme().body.fontFamily),
+                ),
+                SizedBoxes.verticalLarge,
+                const DaysTag(),
+                SizedBoxes.verticalLarge,
+                Row(
+                  children: [
+                    Text(
+                      'How many Adults (1-8)',
                       style: TextStyle(
-                          fontFamily: CPATextTheme().body.fontFamily))),
-              SizedBoxes.verticalLarge,
-              // CustomTextField(
-              //   controller: _foodAllergiesController,
-              //   hintText: 'peanuts, sunflower seeds....',
-              //   hintStyle: CPATextTheme()
-              //       .subtext
-              //       .copyWith(color: CPAColorTheme().neutral400),
-              // ),
-
-              ReusableDropDown(
-                onTap: (value) {
-                  _foodAllergiesController = value;
-                },
-                items: ['Yes', 'No'],
-              ),
-
-              SizedBoxes.verticalLarge,
-              Align(
+                        fontFamily: CPATextTheme().body.fontFamily,
+                      ),
+                    ),
+                    Text(
+                      '(Over the age of 12)',
+                      style: TextStyle(
+                        fontFamily: CPATextTheme().body.fontFamily,
+                        color: Colors.grey,
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBoxes.verticalLarge,
+                AdultsTag(
+                  onAdultsChanged: (int adultsCount) {
+                    setState(() {
+                      noOfAdults = adultsCount.toDouble();
+                      noOfChildren = calculateMaxChildren();
+                    });
+                  },
+                ),
+                SizedBoxes.verticalLarge,
+                Row(
+                  children: [
+                    Text(
+                      'How many children ',
+                      style: TextStyle(
+                        fontFamily: CPATextTheme().body.fontFamily,
+                      ),
+                    ),
+                    Text(
+                      '(12 years of age or younger)',
+                      style: TextStyle(
+                        fontFamily: CPATextTheme().body.fontFamily,
+                        color: Colors.grey,
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBoxes.verticalTiny,
+                SizedBoxes.verticalLarge,
+                ChildrenTag(),
+                SizedBoxes.verticalLarge,
+                Align(
+                  alignment: Alignment.topLeft,
+                  child: Text(
+                    'Are there any food allergies? ',
+                    style: TextStyle(
+                      fontFamily: CPATextTheme().body.fontFamily,
+                    ),
+                  ),
+                ),
+                SizedBoxes.verticalLarge,
+                ReusableDropDown(
+                  onTap: (value) {
+                    _foodAllergiesController = value;
+                  },
+                  items: ['Yes', 'No'],
+                ),
+                SizedBoxes.verticalLarge,
+                Align(
                   alignment: Alignment.bottomCenter,
                   child: CustomButton(
-                      buttonText: 'Next',
-                      onPressed: () {
-                        fName = _nameController.text.toString();
-                        fAddress = _addressController.text.toString();
-                        foodAllergies = _foodAllergiesController;
+                    buttonText: 'Next',
+                    onPressed: () {
+                      fName = _nameController.text.toString();
+                      fAddress = _addressController.text.toString();
+                      foodAllergies = _foodAllergiesController;
 
-                        print('___________________________________');
-                        print(fName);
-                        print(fAddress);
-                        print('Food Allergies: $foodAllergies');
-                        print('CPA Duration: $cpaLong');
-                        print('Number of Adults: $noOfAdults');
-                        print('Number of Children: $noOfChildren ');
+                      print('___________________________________');
+                      print(fName);
+                      print(fAddress);
+                      print('Food Allergies: $foodAllergies');
+                      print('CPA Duration: $cpaLong');
+                      print('Number of Adults: $noOfAdults');
+                      print('Number of Children: $noOfChildren ');
 
-                        // Validate fields before proceeding
-                        if (_nameController.text.isEmpty ||
-                            _addressController.text.isEmpty ||
-                            (cpaLong?.isEmpty ?? true) ||
-                            (noOfAdults == null || noOfAdults == 0) ||
-                            (noOfChildren == null || noOfChildren == 0) ||
-                            (foodAllergies?.isEmpty ?? true)) {
-                          // Show an alert if any of the required fields is empty
-                          showDialog(
-                            context: context,
-                            builder: (context) => AlertDialog(
-                              title: Text('Incomplete Information'),
-                              content: Text(
-                                  'Please fill in all the required fields.'),
-                              actions: [
-                                TextButton(
-                                  onPressed: () {
-                                    Navigator.of(context).pop();
-                                  },
-                                  child: Text('OK'),
-                                ),
-                              ],
-                            ),
-                          );
-                        } else {
-                          // All fields are filled, proceed to the next screen
-                          // fName = _nameController.text.toString();
-                          // fAddress = _addressController.text.toString();
-                          // foodAllergies = _foodAllergiesController;
-
-                          // print('___________________________________');
-                          // print(fName);
-                          // print(fAddress);
-                          // print('Food Allergies: $foodAllergies');
-                          // print('CPA Duration: $cpaLong');
-                          // print('Number of Adults: $noOfAdults');
-                          // print('Number of Children: $noOfChildren ');
-
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => AnalysisScreen2(uid: uid),
-                            ),
-                          );
-                        }
-                      }))
-            ],
+                      if (_nameController.text.isEmpty ||
+                          _addressController.text.isEmpty ||
+                          (cpaLong?.isEmpty ?? true) ||
+                          (noOfAdults == null || noOfAdults == 0) ||
+                          (noOfChildren == null || noOfChildren == 0) ||
+                          (foodAllergies?.isEmpty ?? true)) {
+                        showDialog(
+                          context: context,
+                          builder: (context) => AlertDialog(
+                            title: Text('Incomplete Information'),
+                            content: Text('Please fill in all the required fields.'),
+                            actions: [
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                },
+                                child: Text('OK'),
+                              ),
+                            ],
+                          ),
+                        );
+                      } else {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => AnalysisScreen2(uid: uid),
+                          ),
+                        );
+                      }
+                    },
+                  ),
+                ),
+              ],
+            ),
           ),
-        )),
+        ),
       ),
     );
   }
 }
 
 class DaysTag extends StatefulWidget {
-  const DaysTag({super.key});
+  const DaysTag({Key? key});
 
   @override
-  // ignore: library_private_types_in_public_api
   _DaysTagState createState() => _DaysTagState();
 }
 
 class _DaysTagState extends State<DaysTag> {
-  String selectedTag = ''; // Store the selected tag
+  String selectedTag = '';
 
   void selectTag(String tag) {
     setState(() {
@@ -241,7 +249,7 @@ class _DaysTagState extends State<DaysTag> {
               '60 days',
               CPAColorTheme().primaryblue,
               onTap: () {
-                cpaLong = '30 days';
+                cpaLong = '60 days';
               },
             ),
             SizedBox(
@@ -251,7 +259,7 @@ class _DaysTagState extends State<DaysTag> {
               '90 days',
               CPAColorTheme().primaryblue,
               onTap: () {
-                cpaLong = '30 days';
+                cpaLong = '90 days';
               },
             ),
           ],
@@ -290,11 +298,13 @@ class _DaysTagState extends State<DaysTag> {
   }
 }
 
-double noOfAdults = 00;
-double noOfChildren = 00;
+double noOfAdults = 0;
+double noOfChildren = 0;
 
 class AdultsTag extends StatefulWidget {
-  const AdultsTag({Key? key}) : super(key: key);
+  final Function(int) onAdultsChanged;
+
+  const AdultsTag({Key? key, required this.onAdultsChanged}) : super(key: key);
 
   @override
   _AdultsTagState createState() => _AdultsTagState();
@@ -307,12 +317,8 @@ class _AdultsTagState extends State<AdultsTag> {
     setState(() {
       selectedTag = tag;
       noOfAdults = double.parse(tag);
-      noOfChildren = calculateMaxChildren();
+      widget.onAdultsChanged(noOfAdults.toInt());
     });
-  }
-
-  double calculateMaxChildren() {
-    return 8 - noOfAdults;
   }
 
   @override
@@ -323,8 +329,7 @@ class _AdultsTagState extends State<AdultsTag> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: List.generate(8, (index) {
-            return buildTag(
-                (index + 1).toString(), CPAColorTheme().primaryblue);
+            return buildTag((index + 1).toString(), CPAColorTheme().primaryblue);
           }),
         ),
       ),
@@ -378,7 +383,6 @@ class _ChildrenTagState extends State<ChildrenTag> {
 
   @override
   Widget build(BuildContext context) {
-    // Calculate the remaining slots for children
     double remainingSlots = 8 - noOfAdults;
 
     return Center(
@@ -388,8 +392,7 @@ class _ChildrenTagState extends State<ChildrenTag> {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: List.generate(remainingSlots.toInt(), (index) {
             String tag = (index + 1).toString();
-            bool isSelected =
-                selectedTag == tag && noOfAdults > 0 && noOfAdults < 8;
+            bool isSelected = selectedTag == tag && noOfAdults > 0 && noOfAdults < 8;
             return buildTag(tag, isSelected, CPAColorTheme().primaryblue);
           }),
         ),
@@ -431,3 +434,6 @@ class _ChildrenTagState extends State<ChildrenTag> {
     );
   }
 }
+ double calculateMaxChildren() {
+    return 8 - noOfAdults;
+  }

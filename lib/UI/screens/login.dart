@@ -1,6 +1,6 @@
 import 'package:cpa/export.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
- 
+
 import '../../data/dummy.dart';
 import '../../services/auth_services.dart';
 import '../../services/shared_services.dart';
@@ -146,15 +146,37 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     SizedBoxes.verticalLarge,
                     CustomButton(
-                        buttonText: 'Sign in',
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => ProfileSetup(uid: ""),
-                            ),
-                          );
-                        }),
+                      buttonText: 'Sign in',
+                      onPressed: () async {
+                        setState(() {
+                          isLoading = true;
+                        });
+                        await AuthServices.signInWithGoogle().then((value) {
+                          Utils.showSnackbar(context, "Success Login");
+                          uid = value.user!.uid;
+                          shared.loginPrefences(
+                              uid: value.user!.uid, isLogin: true);
+                          setState(() {
+                            isLoading = false;
+                          });
+
+                          Navigator.of(context).pushAndRemoveUntil(
+                              MaterialPageRoute(
+                                builder: (context) => HomeScreen(uid: uid),
+                              ),
+                              (route) => false);
+                          print(value.user!.uid);
+                        }).onError((error, stackTrace) {
+                          setState(() {
+                            isLoading = false;
+                          });
+                          Utils.showSnackbar(context, "Error Occured");
+                          print("Error!");
+                          print(error);
+                        });
+                      },
+                    ),
+
                     // ElevatedButton(
                     //   onPressed: isLoading
                     //       ? null
@@ -279,14 +301,14 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         TextButton(
                           onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => ProfileSetup(
-                                  uid: "",
-                                ),
-                              ),
-                            );
+                            // Navigator.push(
+                            //   context,
+                            //   MaterialPageRoute(
+                            //     builder: (context) => ProfileSetup(
+                            //       uid: "",
+                            //     ),
+                            //   ),
+                            // );
                           },
                           child: Text(
                             'Sign up',

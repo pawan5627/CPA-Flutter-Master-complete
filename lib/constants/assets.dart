@@ -35,4 +35,27 @@ class CPAAssets {
   static String ReferFriend = 'assets/images/referfriend.png';
   static String Language = 'assets/images/language.png';
   static String Lock = 'assets/images/lock.png';
+  static String one = 'assets/images/CpaIcons/1.png';
+    static String two = 'assets/images/CpaIcons/2.png';
+
+  static String three = 'assets/images/CpaIcons/3.png';
+
+  static String four = 'assets/images/CpaIcons/4.png';
+
+  static String five = 'assets/images/CpaIcons/5.png';
+
+  static String six = 'assets/images/CpaIcons/6.png';
+
+  static String seven = 'assets/images/CpaIcons/7.png';
+
+  static String eight = 'assets/images/CpaIcons/8.png';
+
+  static String nine = 'assets/images/CpaIcons/9.png';
+    static String ten = 'assets/images/CpaIcons/10.png';
+
+  static String eleven = 'assets/images/CpaIcons/11.png';
+
+  static String twelve = 'assets/images/CpaIcons/12.png';
+
+
 }

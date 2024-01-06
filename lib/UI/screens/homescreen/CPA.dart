@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cpa/UI/screens/homescreen/widgets/container/customcontainer.dart';
 import 'package:cpa/UI/screens/homescreen/widgets/recommmendation2.dart';
 import 'package:flutter/material.dart';
 import '../../../constants/assets.dart';
@@ -67,6 +68,8 @@ String handing = "";
 String invest = "";
 String basicTechnology = "";
 
+String interested = "";
+
 class _CPA_ScreenState extends State<CPA_Screen> {
   @override
   void initState() {
@@ -109,6 +112,7 @@ class _CPA_ScreenState extends State<CPA_Screen> {
             handing = (userData['safe_room'] ?? '').toString();
             invest = (userData['invest'] ?? '').toString();
             basicTechnology = (userData['basic_technology'] ?? '').toString();
+            interested = (userData['interested'] ?? '').toString();
           });
 
           // Print the fetched details
@@ -191,7 +195,7 @@ class _CPA_ScreenState extends State<CPA_Screen> {
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Image.asset(CPAAssets.water),
+                                  Image.asset(CPAAssets.one),
                                   SizedBoxes.horizontalMedium,
                                   Column(
                                     children: [
@@ -217,533 +221,84 @@ class _CPA_ScreenState extends State<CPA_Screen> {
                                 ],
                               ),
                             ),
-                            Container(
-                              decoration: BoxDecoration(
-                                color: CPAColorTheme().white,
-                                borderRadius: BorderRadius.circular(1.0),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.grey.withOpacity(0.5),
-                                    spreadRadius: 2,
-                                    blurRadius: 5,
-                                    offset: Offset(
-                                        0, 3), // changes position of shadow
-                                  ),
-                                ],
-                              ),
-                              height: 90,
-                              width: 190,
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Image.asset(CPAAssets.power),
-                                  SizedBox(
-                                      width: 8), // Adjust the width as needed
-                                  Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment: CrossAxisAlignment
-                                        .start, // Set this property
-                                    children: [
-                                      SizedBoxes.verticalMedium,
-                                      SizedBoxes.verticalMedium,
-                                      Text(
-                                        'Pets',
-                                        style: CPATextTheme().heading6.copyWith(
-                                              color: CPAColorTheme().black,
-                                              fontWeight: FontWeight.w600,
-                                            ),
-                                      ),
-                                      Text(
-                                        pets,
-                                        style: CPATextTheme().small.copyWith(
-                                              color: CPAColorTheme().black,
-                                              fontWeight: FontWeight.normal,
-                                            ),
-                                      ),
-                                    ],
-                                  )
-                                ],
-                              ),
-                            )
+                            CustomInfoContainer(
+                              variableText: 'Pets',
+                              iconPath: CPAAssets.twelve,
+                              infoText: pets,
+                            ),
                           ],
                         ),
                         SizedBoxes.verticalLarge,
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Container(
-                              decoration: BoxDecoration(
-                                color: CPAColorTheme().white,
-                                borderRadius: BorderRadius.circular(1.0),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.grey.withOpacity(0.5),
-                                    spreadRadius: 2,
-                                    blurRadius: 5,
-                                    offset: Offset(
-                                        0, 3), // changes position of shadow
-                                  ),
-                                ],
-                              ),
-                              height: 90,
-                              width: 190,
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Image.asset(CPAAssets.power),
-                                  SizedBox(
-                                      width: 8), // Adjust the width as needed
-                                  Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment: CrossAxisAlignment
-                                        .start, // Set this property
-                                    children: [
-                                      SizedBoxes.verticalMedium,
-                                      SizedBoxes.verticalMedium,
-                                      Text(
-                                        'Home Type',
-                                        style: CPATextTheme().heading6.copyWith(
-                                              color: CPAColorTheme().black,
-                                              fontWeight: FontWeight.w600,
-                                            ),
-                                      ),
-                                      Text(
-                                        home,
-                                        style: CPATextTheme().small.copyWith(
-                                              color: CPAColorTheme().black,
-                                              fontWeight: FontWeight.normal,
-                                            ),
-                                      ),
-                                    ],
-                                  )
-                                ],
-                              ),
+                            CustomInfoContainer(
+                              variableText: 'Home Type',
+                              iconPath: CPAAssets.two,
+                              infoText: home,
                             ),
-                            Container(
-                              decoration: BoxDecoration(
-                                color: CPAColorTheme().white,
-                                borderRadius: BorderRadius.circular(1.0),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.grey.withOpacity(0.5),
-                                    spreadRadius: 2,
-                                    blurRadius: 5,
-                                    offset: Offset(
-                                        0, 3), // changes position of shadow
-                                  ),
-                                ],
-                              ),
-                              height: 90,
-                              width: 190,
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Image.asset(CPAAssets.power),
-                                  SizedBox(
-                                      width: 8), // Adjust the width as needed
-                                  Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment: CrossAxisAlignment
-                                        .start, // Set this property
-                                    children: [
-                                      SizedBoxes.verticalMedium,
-                                      SizedBoxes.verticalMedium,
-                                      Text(
-                                        'Geographic',
-                                        style: CPATextTheme().heading6.copyWith(
-                                              color: CPAColorTheme().black,
-                                              fontWeight: FontWeight.w600,
-                                            ),
-                                      ),
-                                      Text(
-                                        geographic,
-                                        style: CPATextTheme().small.copyWith(
-                                              color: CPAColorTheme().black,
-                                              fontWeight: FontWeight.normal,
-                                            ),
-                                      ),
-                                    ],
-                                  )
-                                ],
-                              ),
-                            )
+                            CustomInfoContainer(
+                              variableText: 'Geographic',
+                              iconPath: CPAAssets.three,
+                              infoText: geographic,
+                            ),
                           ],
                         ),
                         SizedBoxes.verticalLarge,
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Container(
-                              decoration: BoxDecoration(
-                                color: CPAColorTheme().white,
-                                borderRadius: BorderRadius.circular(1.0),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.grey.withOpacity(0.5),
-                                    spreadRadius: 2,
-                                    blurRadius: 5,
-                                    offset: Offset(
-                                        0, 3), // changes position of shadow
-                                  ),
-                                ],
-                              ),
-                              height: 90,
-                              width: 190,
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Image.asset(CPAAssets.power),
-                                  SizedBox(
-                                      width: 8), // Adjust the width as needed
-                                  Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment: CrossAxisAlignment
-                                        .start, // Set this property
-                                    children: [
-                                      SizedBoxes.verticalMedium,
-                                      SizedBoxes.verticalMedium,
-                                      Text(
-                                        '2nd Location',
-                                        style: CPATextTheme().heading6.copyWith(
-                                              color: CPAColorTheme().black,
-                                              fontWeight: FontWeight.w600,
-                                            ),
-                                      ),
-                                      Text(
-                                        secondaryLocation,
-                                        style: CPATextTheme().small.copyWith(
-                                              color: CPAColorTheme().black,
-                                              fontWeight: FontWeight.normal,
-                                            ),
-                                      ),
-                                    ],
-                                  )
-                                ],
-                              ),
+                            CustomInfoContainer(
+                              variableText: '2nd Location',
+                              iconPath: CPAAssets.four,
+                              infoText: secondaryLocation,
                             ),
-                            Container(
-                              decoration: BoxDecoration(
-                                color: CPAColorTheme().white,
-                                borderRadius: BorderRadius.circular(1.0),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.grey.withOpacity(0.5),
-                                    spreadRadius: 2,
-                                    blurRadius: 5,
-                                    offset: Offset(
-                                        0, 3), // changes position of shadow
-                                  ),
-                                ],
-                              ),
-                              height: 90,
-                              width: 190,
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Image.asset(CPAAssets.power),
-                                  SizedBox(
-                                      width: 8), // Adjust the width as needed
-                                  Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment: CrossAxisAlignment
-                                        .start, // Set this property
-                                    children: [
-                                      SizedBoxes.verticalMedium,
-                                      SizedBoxes.verticalMedium,
-                                      Text(
-                                        'Duration    ',
-                                        style: CPATextTheme().heading6.copyWith(
-                                              color: CPAColorTheme().black,
-                                              fontWeight: FontWeight.w600,
-                                            ),
-                                      ),
-                                      Text(
-                                        cpa_long,
-                                        style: CPATextTheme().small.copyWith(
-                                              color: CPAColorTheme().black,
-                                              fontWeight: FontWeight.normal,
-                                            ),
-                                      ),
-                                    ],
-                                  )
-                                ],
-                              ),
-                            )
+                            CustomInfoContainer(
+                              variableText: 'Duration    ',
+                              iconPath: CPAAssets.five,
+                              infoText: cpa_long,
+                            ),
                           ],
                         ),
                         SizedBoxes.verticalLarge,
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Container(
-                              decoration: BoxDecoration(
-                                color: CPAColorTheme().white,
-                                borderRadius: BorderRadius.circular(1.0),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.grey.withOpacity(0.5),
-                                    spreadRadius: 2,
-                                    blurRadius: 5,
-                                    offset: Offset(
-                                        0, 3), // changes position of shadow
-                                  ),
-                                ],
-                              ),
-                              height: 90,
-                              width: 190,
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Image.asset(CPAAssets.power),
-                                  SizedBox(
-                                      width: 8), // Adjust the width as needed
-                                  Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment: CrossAxisAlignment
-                                        .start, // Set this property
-                                    children: [
-                                      SizedBoxes.verticalMedium,
-                                      SizedBoxes.verticalMedium,
-                                      Text(
-                                        'Vehicle        ',
-                                        style: CPATextTheme().heading6.copyWith(
-                                              color: CPAColorTheme().black,
-                                              fontWeight: FontWeight.w600,
-                                            ),
-                                      ),
-                                      Text(
-                                        alternate_transport,
-                                        style: CPATextTheme().small.copyWith(
-                                              color: CPAColorTheme().black,
-                                              fontWeight: FontWeight.normal,
-                                            ),
-                                      ),
-                                    ],
-                                  )
-                                ],
-                              ),
+                            CustomInfoContainer(
+                              variableText: 'Vehicle        ',
+                              iconPath: CPAAssets.six,
+                              infoText: alternate_transport,
                             ),
-                            Container(
-                              decoration: BoxDecoration(
-                                color: CPAColorTheme().white,
-                                borderRadius: BorderRadius.circular(1.0),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.grey.withOpacity(0.5),
-                                    spreadRadius: 2,
-                                    blurRadius: 5,
-                                    offset: Offset(
-                                        0, 3), // changes position of shadow
-                                  ),
-                                ],
-                              ),
-                              height: 90,
-                              width: 190,
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Image.asset(CPAAssets.power),
-                                  SizedBox(
-                                      width: 8), // Adjust the width as needed
-                                  Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment: CrossAxisAlignment
-                                        .start, // Set this property
-                                    children: [
-                                      SizedBoxes.verticalMedium,
-                                      SizedBoxes.verticalMedium,
-                                      Text(
-                                        'Non-Lethal',
-                                        style: CPATextTheme().heading6.copyWith(
-                                              color: CPAColorTheme().black,
-                                              fontWeight: FontWeight.w600,
-                                            ),
-                                      ),
-                                      Text(
-                                        'Yes',
-                                        style: CPATextTheme().small.copyWith(
-                                              color: CPAColorTheme().black,
-                                              fontWeight: FontWeight.normal,
-                                            ),
-                                      ),
-                                    ],
-                                  )
-                                ],
-                              ),
-                            )
+                            CustomInfoContainer(
+                              variableText: 'Non-Lethal',
+                              iconPath: CPAAssets.seven,
+                              infoText: interested,
+                            ),
                           ],
                         ),
                         SizedBoxes.verticalLarge,
                         Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Container(
-                                decoration: BoxDecoration(
-                                  color: CPAColorTheme().white,
-                                  borderRadius: BorderRadius.circular(1.0),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Colors.grey.withOpacity(0.5),
-                                      spreadRadius: 2,
-                                      blurRadius: 5,
-                                      offset: Offset(
-                                          0, 3), // changes position of shadow
-                                    ),
-                                  ],
-                                ),
-                                height: 90,
-                                width: 190,
-                                child: Row(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Image.asset(CPAAssets.power),
-                                    SizedBox(
-                                        width: 8), // Adjust the width as needed
-                                    Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      crossAxisAlignment: CrossAxisAlignment
-                                          .start, // Set this property
-                                      children: [
-                                        SizedBoxes.verticalMedium,
-                                        SizedBoxes.verticalMedium,
-                                        Text(
-                                          'Handling On',
-                                          style: CPATextTheme()
-                                              .heading6
-                                              .copyWith(
-                                                color: CPAColorTheme().black,
-                                                fontWeight: FontWeight.w600,
-                                              ),
-                                        ),
-                                        Text(
-                                          'Vaitaki Radio',
-                                          style: CPATextTheme().small.copyWith(
-                                                color: CPAColorTheme().black,
-                                                fontWeight: FontWeight.normal,
-                                              ),
-                                        ),
-                                      ],
-                                    )
-                                  ],
-                                ),
+                              CustomInfoContainer(
+                                variableText: 'Handling On',
+                                iconPath: CPAAssets.eight,
+                                infoText: 'Vaitaki Radio',
                               ),
-                              Container(
-                                decoration: BoxDecoration(
-                                  color: CPAColorTheme().white,
-                                  borderRadius: BorderRadius.circular(1.0),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Colors.grey.withOpacity(0.5),
-                                      spreadRadius: 2,
-                                      blurRadius: 5,
-                                      offset: Offset(
-                                          0, 3), // changes position of shadow
-                                    ),
-                                  ],
-                                ),
-                                height: 90,
-                                width: 190,
-                                child: Row(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Image.asset(CPAAssets.power),
-                                    SizedBox(
-                                        width: 8), // Adjust the width as needed
-                                    Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      crossAxisAlignment: CrossAxisAlignment
-                                          .start, // Set this property
-                                      children: [
-                                        SizedBoxes.verticalMedium,
-                                        SizedBoxes.verticalMedium,
-                                        Text(
-                                          '\$ Budget',
-                                          style: CPATextTheme()
-                                              .heading6
-                                              .copyWith(
-                                                color: CPAColorTheme().black,
-                                                fontWeight: FontWeight.w600,
-                                              ),
-                                        ),
-                                        Text(
-                                          invest,
-                                          style: CPATextTheme().small.copyWith(
-                                                color: CPAColorTheme().black,
-                                                fontWeight: FontWeight.normal,
-                                              ),
-                                        ),
-                                      ],
-                                    )
-                                  ],
-                                ),
-                              )
+                              CustomInfoContainer(
+                                variableText: '\$ Budget',
+                                iconPath: CPAAssets.nine,
+                                infoText: invest,
+                              ),
                             ]),
                         SizedBoxes.verticalLarge,
                         Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Container(
-                                decoration: BoxDecoration(
-                                  color: CPAColorTheme().white,
-                                  borderRadius: BorderRadius.circular(1.0),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Colors.grey.withOpacity(0.5),
-                                      spreadRadius: 2,
-                                      blurRadius: 5,
-                                      offset: Offset(
-                                          0, 3), // changes position of shadow
-                                    ),
-                                  ],
-                                ),
-                                height: 90,
-                                width: 190,
-                                child: Row(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Image.asset(CPAAssets.power),
-                                    SizedBox(
-                                        width: 8), // Adjust the width as needed
-                                    Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      crossAxisAlignment: CrossAxisAlignment
-                                          .start, // Set this property
-                                      children: [
-                                        SizedBoxes.verticalMedium,
-                                        SizedBoxes.verticalMedium,
-                                        Text(
-                                          'Technology',
-                                          style: CPATextTheme()
-                                              .heading6
-                                              .copyWith(
-                                                color: CPAColorTheme().black,
-                                                fontWeight: FontWeight.w600,
-                                              ),
-                                        ),
-                                        Text(
-                                          basicTechnology,
-                                          style: CPATextTheme().small.copyWith(
-                                                color: CPAColorTheme().black,
-                                                fontWeight: FontWeight.normal,
-                                              ),
-                                        ),
-                                      ],
-                                    )
-                                  ],
-                                ),
+                              CustomInfoContainer(
+                                variableText: 'Technology',
+                                iconPath: CPAAssets.ten,
+                                infoText: basicTechnology,
                               ),
                               GestureDetector(
                                 onTap: () {
@@ -782,7 +337,7 @@ class _CPA_ScreenState extends State<CPA_Screen> {
                                         CrossAxisAlignment.center,
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      Image.asset(CPAAssets.power),
+                                      Image.asset(CPAAssets.eleven),
                                       SizedBox(
                                           width:
                                               8), // Adjust the width as needed
@@ -822,7 +377,11 @@ class _CPA_ScreenState extends State<CPA_Screen> {
                       ]))
                 ],
               )),
-              // Recomendation(collectionName: 'recomendation', uid: widget.uid)
+              Recomendation(
+                collectionName: 'recomendation',
+                uid: widget.uid,
+                isScaffold: false,
+              ),
             ],
           ),
         ),

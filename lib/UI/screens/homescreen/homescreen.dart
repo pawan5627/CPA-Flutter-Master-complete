@@ -1,10 +1,12 @@
+// ignore_for_file: unused_import
+
 import 'package:cpa/UI/screens/homescreen/products/products_screen.dart';
 import 'package:cpa/UI/screens/homescreen/products/water_resources.dart';
 import 'package:cpa/UI/screens/homescreen/widgets/recommmendation2.dart';
-import 'package:cpa/UI/screens/homescreen/widgets/side_navbar/recomendation.dart';
-import 'package:cpa/export.dart';
+ import 'package:cpa/export.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:visibility_detector/visibility_detector.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 import '../searchscreen.dart';
 import 'CPA.dart';
@@ -26,6 +28,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     super.initState();
+
     String videoId = YoutubePlayer.convertUrlToId(widget.liveNewsUrl) ?? "";
     _youtubeController = YoutubePlayerController(
       initialVideoId: videoId,
@@ -56,20 +59,6 @@ class _HomeScreenState extends State<HomeScreen> {
   // Function to unmute the video
   void unmuteVideo() {
     _youtubeController.unMute();
-  }
-
-  @override
-  deactivate() {
-    print("deactivate called");
-    _youtubeController.dispose();
-    super.deactivate();
-  }
-
-  @override
-  void dispose() {
-    print("Dispose called");
-    _youtubeController.dispose();
-    super.dispose();
   }
 
   @override
@@ -125,9 +114,22 @@ class _HomeScreenState extends State<HomeScreen> {
                 width: 433,
                 height: 359,
                 color: CPAColorTheme().primaryblue,
-                child: YoutubePlayer(
-                  controller: _youtubeController,
-                  showVideoProgressIndicator: true,
+                child: VisibilityDetector(
+                  key: UniqueKey(),
+                  onVisibilityChanged: (VisibilityInfo info) {
+                    if (info.visibleFraction >= 0.45) {
+                      _youtubeController.play();
+                      _youtubeController.unMute();
+                    } else {
+                      _youtubeController.pause();
+                      _youtubeController.mute();
+                      // _youtubeController.dispose();
+                    }
+                  },
+                  child: YoutubePlayer(
+                    controller: _youtubeController,
+                    showVideoProgressIndicator: true,
+                  ),
                 ),
               ),
               Padding(
@@ -493,6 +495,7 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Row(
             children: [
               FloatingActionButton(
+                heroTag: null,
                 backgroundColor: Colors.white,
                 onPressed: () {
                   launchURL("https://www.disasterassistance.gov/");
@@ -508,6 +511,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               Spacer(),
               FloatingActionButton(
+                heroTag: null,
                 backgroundColor: Colors.white,
                 onPressed: () {},
                 child: SizedBox(

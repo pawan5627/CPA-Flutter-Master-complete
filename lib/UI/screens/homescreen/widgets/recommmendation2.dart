@@ -1,11 +1,18 @@
+import 'package:cpa/constants/color_theme.dart';
+import 'package:cpa/constants/text_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Recomendation extends StatefulWidget {
   final String collectionName;
   final String? uid;
-
-  const Recomendation({Key? key, required this.collectionName, this.uid})
+  final bool isScaffold;
+  const Recomendation(
+      {Key? key,
+      required this.collectionName,
+      this.uid,
+      this.isScaffold = true})
       : super(key: key);
 
   @override
@@ -182,18 +189,141 @@ class _RecomendationState extends State<Recomendation> {
 
   @override
   Widget build(BuildContext context) {
-    print("uid passed to RecomendationScreen: ${widget.uid}");
+    print("uid passed to RecomendationScreen2: ${widget.uid}");
     print("matched products are: $products");
 
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Recomendations'),
-      ),
-      body: Column(
-        children: [
-          if (products.isNotEmpty)
-            Expanded(
-              child: ListView.builder(
+    return (widget.isScaffold)
+        ? Scaffold(
+            appBar: AppBar(
+              title: const Text('Recomendations'),
+            ),
+            body: Column(
+              children: [
+                if (products.isNotEmpty)
+                  Expanded(
+                    child: ListView.builder(
+                      itemCount: products.length,
+                      itemBuilder: (context, index) {
+                        return Card(
+                          shadowColor: Colors.grey.withOpacity(0.5),
+                          color: CPAColorTheme().white,
+                          child: SizedBox(
+                            child: ListTile(
+                              title: Row(
+                                children: [
+                                  Image.network(
+                                    products[index]['image link'] ??
+                                        products[index]['image address'] ??
+                                        "",
+                                    width: 130,
+                                    height: 140,
+                                  ),
+                                  SizedBox(
+                                    width: 10,
+                                  ),
+                                  Expanded(
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          products[index]['title'] ??
+                                              products[index]['title '] ??
+                                              "Not Found",
+                                          style: CPATextTheme()
+                                              .heading6
+                                              .copyWith(
+                                                  fontWeight: FontWeight.bold,
+                                                  color: CPAColorTheme().black),
+                                          maxLines: 3,
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
+                                        const SizedBox(
+                                          height: 18,
+                                        ),
+                                        Text(
+                                          products[index]['description'] ??
+                                              products[index]['description '] ??
+                                              "No description available",
+                                          style: CPATextTheme().body.copyWith(),
+                                          maxLines: 3,
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
+                                        SizedBox(
+                                          height: 10,
+                                        ),
+                                        GestureDetector(
+                                          onTap: () async {
+                                            final String productLink =
+                                                products[index]
+                                                        ['product link'] ??
+                                                    products[index]
+                                                        ['product link'] ??
+                                                    "";
+
+                                            if (productLink.isNotEmpty) {
+                                              final Uri _url =
+                                                  Uri.parse(productLink);
+
+                                              try {
+                                                // Your launchUrl function goes here
+                                                await launchUrl(_url);
+                                                print(_url);
+                                              } catch (e) {
+                                                print(
+                                                    'Error launching URL: $e');
+                                                print('url is :  $_url');
+                                              }
+                                            }
+                                          },
+                                          child: Container(
+                                            height: 24,
+                                            width:
+                                                330, // Adjust the width as needed
+                                            decoration: BoxDecoration(
+                                              color:
+                                                  CPAColorTheme().primaryblue,
+                                              borderRadius: BorderRadius.circular(
+                                                  4), // Adjust the radius as needed
+                                            ),
+                                            child: Center(
+                                              child: Text(
+                                                "Visit Website",
+                                                style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 10,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                if (products.isEmpty)
+                  const Expanded(
+                    child: Center(
+                      child: CircularProgressIndicator(),
+                    ),
+                  ),
+              ],
+            ),
+          )
+        : (products.isEmpty)
+            ? Center(
+                child: CircularProgressIndicator(),
+              )
+            : ListView.builder(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
                 itemCount: products.length,
                 itemBuilder: (context, index) {
                   return Card(
@@ -216,21 +346,21 @@ class _RecomendationState extends State<Recomendation> {
                                     products[index]['title'] ??
                                         products[index]['title '] ??
                                         "Not Found",
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 16,
                                     ),
                                     maxLines: 3,
                                     overflow: TextOverflow.ellipsis,
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     height: 18,
                                   ),
                                   Text(
                                     products[index]['description'] ??
                                         products[index]['description '] ??
                                         "No description available",
-                                    style: TextStyle(fontSize: 14),
+                                    style: const TextStyle(fontSize: 14),
                                     maxLines: 3,
                                     overflow: TextOverflow.ellipsis,
                                   ),
@@ -262,16 +392,6 @@ class _RecomendationState extends State<Recomendation> {
                     ),
                   );
                 },
-              ),
-            ),
-          if (products.isEmpty)
-            Expanded(
-              child: Center(
-                child: CircularProgressIndicator(),
-              ),
-            ),
-        ],
-      ),
-    );
+              );
   }
 }

@@ -179,9 +179,7 @@ class AnalysisScreen2 extends StatelessWidget {
                             print('interested is $interested');
 
                             // Validate fields before proceeding
-                            if (pets == Null ||
-                                (livingStyle == " ") ||
-                                (landSize == "") ||
+                            if ((livingStyle == " ") ||
                                 (noOfVehicle == "") ||
                                 (interested == "")) {
                               // Show an alert if any of the required fields is empty

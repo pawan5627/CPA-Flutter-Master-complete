@@ -117,9 +117,7 @@ class AnalysisScreen3 extends StatelessWidget {
                             print(invest);
                             print(communication);
 
-                            if (communication == "" ||
-                                (basicTechnology == "") ||
-                                (invest == "")) {
+                            if ((basicTechnology == "") || (invest == "")) {
                               // Show an alert if any of the required fields is empty
                               showDialog(
                                 context: context,

@@ -135,12 +135,23 @@ class _ProfileSetupState extends State<ProfileSetup> {
 
                             if (profileImg == null) {
                               // User has not selected an image, show an error message
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
+                              showDialog(
+                                context: context,
+                                builder: (context) => AlertDialog(
+                                  title: Text('Incomplete Information'),
                                   content: Text(
-                                      'Please select a profile image before continuing.'),
+                                      'Please fill in all the required fields.'),
+                                  actions: [
+                                    TextButton(
+                                      onPressed: () {
+                                        Navigator.of(context).pop();
+                                      },
+                                      child: Text('OK'),
+                                    ),
+                                  ],
                                 ),
                               );
+
                               setState(() {
                                 isProcessing = false;
                               });
@@ -153,7 +164,13 @@ class _ProfileSetupState extends State<ProfileSetup> {
 
                               uid = widget.uid;
 
-                              if (uid != null || profileImg != null) {
+                              if (uid == null ||
+                                  profileImg == null ||
+                                  _nickNameController == null ||
+                                  _dateController == null ||
+                                  gender == null ||
+                                  number == null ||
+                                  _nameController == null) {
                                 await AuthServices.addUser(
                                   name: _nameController.text.toString(),
                                   nickname: _nickNameController.text.toString(),

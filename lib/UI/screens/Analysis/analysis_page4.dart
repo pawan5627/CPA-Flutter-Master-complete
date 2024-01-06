@@ -136,29 +136,37 @@ class AnalysisScreen4 extends StatelessWidget {
                           print(secLandSize);
                           print(safeRoom);
                           print(personalsDocuments);
-
-                          if (secondaryLocation == "" ||
-                              (secLandSize == "") ||
-                              (safeRoom == "") ||
-                              (personalsDocuments == "")) {
-                            // Show an alert if any of the required fields is empty
-                            showDialog(
-                              context: context,
-                              builder: (context) => AlertDialog(
-                                title: Text('Incomplete Information'),
-                                content: Text(
-                                    'Please fill in all the required fields.'),
-                                actions: [
-                                  TextButton(
-                                    onPressed: () {
-                                      Navigator.of(context).pop();
-                                    },
-                                    child: Text('OK'),
-                                  ),
-                                ],
-                              ),
-                            );
+                          if (secondaryLocation == 'Yes') {
+                            if ((safeRoom == "") ||
+                                (personalsDocuments == "")) {
+                              // Show an alert if any of the required fields is empty
+                              showDialog(
+                                context: context,
+                                builder: (context) => AlertDialog(
+                                  title: Text('Incomplete Information'),
+                                  content: Text(
+                                      'Please fill in all the required fields.'),
+                                  actions: [
+                                    TextButton(
+                                      onPressed: () {
+                                        Navigator.of(context).pop();
+                                      },
+                                      child: Text('OK'),
+                                    ),
+                                  ],
+                                ),
+                              );
+                            } else {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      AnalysisScreen5(uid: uid),
+                                ),
+                              );
+                            }
                           } else {
+                            // If secondaryLocation is not 'Yes', proceed without additional validation
                             Navigator.push(
                               context,
                               MaterialPageRoute(

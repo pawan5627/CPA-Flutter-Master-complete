@@ -37,8 +37,8 @@ class ProductsHome extends StatelessWidget {
             ),
             Text(
               'Survival Machine has compiled all the best products to help you prepare for any disaster',
-              style: CPATextTheme().small.copyWith(
-                  color: CPAColorTheme().neutral500,
+              style: CPATextTheme().body1.copyWith(
+                  color: CPAColorTheme().neutral700,
                   fontWeight: FontWeight.w300),
             ),
             SizedBoxes.verticalLarge,
@@ -61,7 +61,7 @@ class ProductsHome extends StatelessWidget {
                     width: 110,
                     decoration: BoxDecoration(
                       color: CPAColorTheme().primarygolden,
-                      borderRadius: BorderRadius.circular(1.0),
+                      borderRadius: BorderRadius.circular(6.0),
                       boxShadow: [
                         BoxShadow(
                           color: Colors.grey.withOpacity(0.5),
@@ -109,7 +109,7 @@ class ProductsHome extends StatelessWidget {
                     width: 110,
                     decoration: BoxDecoration(
                       color: CPAColorTheme().white,
-                      borderRadius: BorderRadius.circular(1.0),
+                      borderRadius: BorderRadius.circular(6.0),
                       boxShadow: [
                         BoxShadow(
                           color: Colors.grey.withOpacity(0.5),
@@ -156,7 +156,7 @@ class ProductsHome extends StatelessWidget {
                     width: 110,
                     decoration: BoxDecoration(
                       color: CPAColorTheme().white,
-                      borderRadius: BorderRadius.circular(1.0),
+                      borderRadius: BorderRadius.circular(6.0),
                       boxShadow: [
                         BoxShadow(
                           color: Colors.grey.withOpacity(0.5),
@@ -209,7 +209,7 @@ class ProductsHome extends StatelessWidget {
                     width: 110,
                     decoration: BoxDecoration(
                       color: CPAColorTheme().white,
-                      borderRadius: BorderRadius.circular(1.0),
+                      borderRadius: BorderRadius.circular(6.0),
                       boxShadow: [
                         BoxShadow(
                           color: Colors.grey.withOpacity(0.5),
@@ -256,7 +256,7 @@ class ProductsHome extends StatelessWidget {
                     width: 110,
                     decoration: BoxDecoration(
                       color: CPAColorTheme().white,
-                      borderRadius: BorderRadius.circular(1.0),
+                      borderRadius: BorderRadius.circular(6.0),
                       boxShadow: [
                         BoxShadow(
                           color: Colors.grey.withOpacity(0.5),
@@ -303,7 +303,7 @@ class ProductsHome extends StatelessWidget {
                     width: 110,
                     decoration: BoxDecoration(
                       color: CPAColorTheme().white,
-                      borderRadius: BorderRadius.circular(1.0),
+                      borderRadius: BorderRadius.circular(6.0),
                       boxShadow: [
                         BoxShadow(
                           color: Colors.grey.withOpacity(0.5),
@@ -350,7 +350,7 @@ class ProductsHome extends StatelessWidget {
                     width: 110,
                     decoration: BoxDecoration(
                       color: CPAColorTheme().white,
-                      borderRadius: BorderRadius.circular(1.0),
+                      borderRadius: BorderRadius.circular(6.0),
                       boxShadow: [
                         BoxShadow(
                           color: Colors.grey.withOpacity(0.5),
@@ -397,7 +397,7 @@ class ProductsHome extends StatelessWidget {
                       width: 110,
                       decoration: BoxDecoration(
                         color: CPAColorTheme().white,
-                        borderRadius: BorderRadius.circular(1.0),
+                        borderRadius: BorderRadius.circular(6.0),
                         boxShadow: [
                           BoxShadow(
                             color: Colors.grey.withOpacity(0.5),
@@ -437,7 +437,7 @@ class ProductsHome extends StatelessWidget {
                       width: 110,
                       decoration: BoxDecoration(
                         color: CPAColorTheme().white,
-                        borderRadius: BorderRadius.circular(1.0),
+                        borderRadius: BorderRadius.circular(6.0),
                         boxShadow: [
                           BoxShadow(
                             color: Colors.grey.withOpacity(0.5),
@@ -482,7 +482,7 @@ class ProductsHome extends StatelessWidget {
                       width: 110,
                       decoration: BoxDecoration(
                         color: CPAColorTheme().white,
-                        borderRadius: BorderRadius.circular(1.0),
+                        borderRadius: BorderRadius.circular(6.0),
                         boxShadow: [
                           BoxShadow(
                             color: Colors.grey.withOpacity(0.5),
